@@ -1,0 +1,44 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    io.kompose.service: syncthing
+  name: syncthing
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      io.kompose.service: syncthing
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        io.kompose.service: syncthing
+    spec:
+      containers:
+        - env:
+            - name: PGID
+              value: "1000"
+            - name: PUID
+              value: "1000"
+          image: syncthing/syncthing
+          name: syncthing
+          ports:
+            - containerPort: 22000
+              protocol: TCP
+            - containerPort: 22000
+              protocol: UDP
+            - containerPort: 21027
+              protocol: UDP
+            - containerPort: 8384
+              protocol: TCP
+          volumeMounts:
+            - mountPath: /var/syncthing
+              name: syncthing
+      hostname: yggdrasil
+      restartPolicy: Always
+      volumes:
+        - name: syncthing
+          persistentVolumeClaim:
+            claimName: syncthing

@@ -1,0 +1,15 @@
+apiVersion: traefik.io
+kind: IngressRoute
+metadata:
+  name: syncthing
+  namespace: files
+spec:
+  entryPoints:
+    - web
+  routes:
+    - match: Host(`syncthing.ygg.dedyn.io`)
+      kind: Rule
+      services:
+        - name: syncthing
+          kind: Service
+          port: 80

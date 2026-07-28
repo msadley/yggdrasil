@@ -4,6 +4,6 @@ metadata:
   name: git-repo
   namespace: fleet-local
 spec:
-  repo: "https://github.com/rancher/fleet-examples"
+  repo: "https://github.com/msadley/yggdrasil.git"
   paths:
     - simple

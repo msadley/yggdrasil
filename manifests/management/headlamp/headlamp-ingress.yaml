@@ -12,3 +12,4 @@ spec:
       services:
         - name: headlamp
           kind: Service
+          port: 80

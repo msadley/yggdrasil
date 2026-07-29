@@ -1,3 +1,15 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: headlamp
+  namespace: management
+spec:
+  ports:
+    - port: 80
+      targetPort: 4466
+  selector:
+    k8s-app: headlamp
+---
 kind: Deployment
 apiVersion: apps/v1
 metadata:
@@ -51,3 +63,12 @@ spec:
             timeoutSeconds: 30
       nodeSelector:
         "kubernetes.io/os": linux
+---
+kind: Secret
+apiVersion: v1
+metadata:
+  name: headlamp-admin
+  namespace: management
+  annotations:
+    kubernetes.io/service-account.name: "headlamp-admin"
+type: kubernetes.io/service-account-token

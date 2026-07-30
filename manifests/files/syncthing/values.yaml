@@ -5,6 +5,5 @@ ingress:
 persistence:
   data:
     enabled: true
-    mountPath: /var/syncthing
-  config:
     accessMode: ReadWriteOnce
+    mountPath: /var/syncthing

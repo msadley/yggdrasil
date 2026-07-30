@@ -1,0 +1,8 @@
+ingress:
+  main:
+    enabled: true
+
+persistence:
+  data:
+    enabled: true
+    mountPath: /var/syncthing

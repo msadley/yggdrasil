@@ -1,0 +1,11 @@
+apiVersion: fleet.cattle.io/v1alpha1
+kind: HelmOp
+metadata:
+  name: syncthing-helm
+  namespace: "fleet-local"
+spec:
+  helm:
+    repo: https://johanneskastl.github.io/helm-charts/
+    chart: syncthing
+    version: "5.1.2"
+  namespace: files

@@ -1,8 +1,13 @@
 ingress:
   main:
     enabled: true
+    primary: true
+    ingressClassName: "traefik"
     hosts:
       - host: syncthing.ygg.dedyn.io
+        paths:
+          - path: /
+            pathType: prefix
 
 persistence:
   data:

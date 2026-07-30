@@ -6,3 +6,5 @@ persistence:
   data:
     enabled: true
     mountPath: /var/syncthing
+  config:
+    accessMode: ReadWriteOnce

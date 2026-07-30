@@ -2,7 +2,7 @@ ingress:
   main:
     enabled: true
     hosts:
-      host: syncthing.ygg.dedyn.io
+      - host: syncthing.ygg.dedyn.io
 
 persistence:
   data:

@@ -7,3 +7,4 @@ persistence:
     enabled: true
     accessMode: ReadWriteOnce
     mountPath: /var/syncthing
+    size: 5Gi

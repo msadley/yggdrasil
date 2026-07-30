@@ -7,7 +7,7 @@ ingress:
       - host: syncthing.ygg.dedyn.io
         paths:
           - path: /
-            pathType: prefix
+            pathType: Prefix
 
 persistence:
   data:

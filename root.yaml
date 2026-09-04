@@ -1,0 +1,25 @@
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: GitRepository
+metadata:
+  name: yggdrasil
+  namespace: flux-system
+spec:
+  interval: 5m
+  url: https://github.com/msadley/yggdrasil
+  ref:
+    branch: master
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: cluster-root
+  namespace: flux-system
+spec:
+  interval: 10m
+  targetNamespace: default
+  sourceRef:
+    kind: GitRepository
+    name: yggdrasil
+  path: "./kustomizations"
+  prune: true
+  timeout: 1m

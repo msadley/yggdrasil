@@ -10,8 +10,8 @@ spec:
       chart: syncthing
       version: "5.1.2"
       sourceRef:
-        kind: johanneskastl
-        name: podinfo
+        kind: HelmRepository
+        name: johanneskastl
         namespace: files
       interval: 10m
 

@@ -3,6 +3,8 @@ kind: IngressRoute
 metadata:
   name: headlamp
   namespace: headlamp
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt-prod-cluster-issuer
 spec:
   entryPoints:
     - web
@@ -13,3 +15,8 @@ spec:
         - name: headlamp
           kind: Service
           port: 80
+
+  tls:
+    domains:
+      - main: headlamp.ygg.dedyn.io
+    secretName: headlamp-tls-secret

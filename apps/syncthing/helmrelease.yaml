@@ -21,11 +21,18 @@ spec:
         enabled: true
         primary: true
         ingressClassName: "traefik"
+        annotations:
+          cert-manager.io/cluster-issuer: letsencrypt-prod-cluster-issuer
         hosts:
           - host: syncthing.ygg.dedyn.io
             paths:
               - path: /
                 pathType: Prefix
+
+        tls:
+          - hosts:
+              - syncthing.ygg.dedyn.io
+            secretName: syncthing-tls-secret
 
     persistence:
       data:

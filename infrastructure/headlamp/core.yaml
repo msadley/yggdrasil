@@ -2,7 +2,7 @@ kind: Service
 apiVersion: v1
 metadata:
   name: headlamp
-  namespace: management
+  namespace: headlamp
 spec:
   ports:
     - port: 80
@@ -14,7 +14,7 @@ kind: Deployment
 apiVersion: apps/v1
 metadata:
   name: headlamp
-  namespace: management
+  namespace: headlamp
 spec:
   replicas: 1
   selector:
@@ -68,7 +68,7 @@ kind: Secret
 apiVersion: v1
 metadata:
   name: headlamp-admin
-  namespace: management
+  namespace: headlamp
   annotations:
     kubernetes.io/service-account.name: "headlamp-admin"
 type: kubernetes.io/service-account-token

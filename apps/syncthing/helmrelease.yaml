@@ -22,7 +22,7 @@ spec:
         primary: true
         ingressClassName: "traefik"
         annotations:
-          cert-manager.io/cluster-issuer: letsencrypt-prod-cluster-issuer
+          cert-manager.io/cluster-issuer: letsencrypt-staging-cluster-issuer
         hosts:
           - host: syncthing.ygg.dedyn.io
             paths:

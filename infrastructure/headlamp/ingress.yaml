@@ -4,7 +4,7 @@ metadata:
   name: headlamp
   namespace: headlamp
   annotations:
-    cert-manager.io/cluster-issuer: letsencrypt-prod-cluster-issuer
+    cert-manager.io/cluster-issuer: letsencrypt-staging-cluster-issuer
 spec:
   entryPoints:
     - web

@@ -16,10 +16,10 @@ metadata:
   namespace: flux-system
 spec:
   interval: 10m
-  targetNamespace: default
+  targetNamespace: flux-system
   sourceRef:
     kind: GitRepository
     name: yggdrasil
   path: "./kustomizations"
   prune: true
-  timeout: 1m
+  timeout: 5m

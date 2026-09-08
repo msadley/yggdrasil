@@ -1,0 +1,10 @@
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: OCIRepository
+metadata:
+  name: johanneskastl
+  namespace: cert-manager
+spec:
+  interval: 1m
+  url: oci://quay.io/jetstack/charts/cert-manager
+  ref:
+    tag: latest

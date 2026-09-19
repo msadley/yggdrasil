@@ -9,14 +9,14 @@ spec:
   rules:
     - host: headlamp.ygg.dedyn.io
       http:
-      paths:
-        - path: /
-          pathType: prefix
-          backend:
-            service:
-              name: headlamp
-              port: 80
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: headlamp
+                port: 80
   tls:
-    secretName: headlamp-tls-secret
     - hosts:
       - headlamp.ygg.dedyn.io
+    secretName: headlamp-tls-secret

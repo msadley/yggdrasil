@@ -16,7 +16,8 @@ spec:
               service:
                 name: headlamp
                 port: 80
+
   tls:
-    - hosts:
+    hosts:
       - headlamp.ygg.dedyn.io
     secretName: headlamp-tls-secret

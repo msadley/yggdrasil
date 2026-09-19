@@ -7,9 +7,10 @@ metadata:
     cert-manager.io/cluster-issuer: letsencrypt-staging-cluster-issuer
 spec:
   rules:
-    - http:
+    - host: headlamp.ygg.dedyn.io
+      http:
       paths:
-        - path: headlamp.ygg.dedyn.io
+        - path: /
           pathType: prefix
           backend:
             service:

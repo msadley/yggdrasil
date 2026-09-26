@@ -96,10 +96,6 @@ metadata:
 spec:
   selector:
     app: bds
-  ipFamilyPolicy: PreferDualStack
-  ipFamilies:
-    - IPv4
-    - IPv6
   ports:
     - port: 19132
       protocol: UDP

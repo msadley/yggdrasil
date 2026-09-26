@@ -101,4 +101,4 @@ spec:
       protocol: UDP
       nodePort: 30132
       name: default
-  type: NodePort
+  type: LoadBalancer

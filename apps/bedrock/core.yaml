@@ -16,7 +16,7 @@ data:
   LEVEL_SEED: "416665323"
   #SERVER_NAME: "my_minecraft_server"
   SERVER_PORT: "19132"
-  SERVER_PORT_V6: "19133"
+  #SERVER_PORT_V6: "19133"
   LEVEL_TYPE: "DEFAULT" # Options: FLAT, LEGACY, DEFAULT
   ALLOW_CHEATS: "false" # Options: true, false
   MAX_PLAYERS: "5"

@@ -100,7 +100,5 @@ spec:
     - port: 19132
       protocol: UDP
       nodePort: 30132
-    - port: 19133
-      protocol: UDP
-      nodePort: 30133
+      name: default
   type: NodePort

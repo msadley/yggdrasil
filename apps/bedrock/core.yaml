@@ -38,6 +38,7 @@ metadata:
   labels:
     app: bds
   name: bds
+  namespace: minecraft-bedrock
 spec:
   # never more than 1 since BDS is not horizontally scalable
   replicas: 1
@@ -91,6 +92,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: bds
+  namespace: minecraft-bedrock
 spec:
   selector:
     app: bds

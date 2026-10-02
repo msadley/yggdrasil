@@ -29,7 +29,7 @@ data:
   TRANSPORT: "raknet" # Options: raknet (classic direct-IP UDP), nethernet (brokered, painful behind NAT)
   #
   ## Changing these will have a performance impact
-  #VIEW_DISTANCE: "10"
+  VIEW_DISTANCE: "32"
   #TICK_DISTANCE: "4"
   #MAX_THREADS: "8"
 ---

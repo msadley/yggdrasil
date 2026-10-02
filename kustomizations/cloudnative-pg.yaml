@@ -1,0 +1,12 @@
+kind: Kustomization
+metadata:
+  name: cnpg
+  namespace: flux-system
+spec:
+  interval: 10m
+  path: ./infrastructure/cloudnative-pg
+  prune: true
+  targetNamespace: cnpg
+  sourceRef:
+    kind: GitRepository
+    name: yggdrasil

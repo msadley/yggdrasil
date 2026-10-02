@@ -1,0 +1,14 @@
+apiVersion: postgres.cnpg.io/v1
+kind: Cluster
+metadata:
+  name: postgres-cluster
+spec:
+  instances: 3
+
+  postgresql:
+    synchronous:
+      method: any
+      number: 1
+
+  storage:
+    size: 5Gi

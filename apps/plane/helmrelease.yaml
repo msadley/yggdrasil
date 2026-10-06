@@ -23,16 +23,8 @@ spec:
       ingressClass: traefik
       appHost: plane.ygg.dedyn.io
 
-    services:
-      postgres:
-        local_setup: false
-
-    redis:
-      storageClass: local-path
-    minio:
-      storageClass: local-path
-    rabbitmq:
-      storageClass: local-path
+    postgres:
+      local_setup: false
 
     env:
       # TODO: remove this ugly thing and inject it correctly

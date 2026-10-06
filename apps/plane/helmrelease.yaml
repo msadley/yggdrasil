@@ -1,0 +1,37 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: plane
+  namespace: plane
+spec:
+  interval: 10m
+  chart:
+    spec:
+      chart: plane-ce
+      version: "2.6.3"
+      sourceRef:
+        kind: HelmRepository
+        name: plane
+        namespace: plane
+      interval: 10m
+
+  values:
+    planeVersion: v2.6.3
+
+    license:
+      licenseDomain: plane.ygg.dedyn.io
+      licenseServer: https://prime.plane.so
+
+    ingress:
+      enabled: true
+      ingressClass: traefik
+
+    services:
+      postgres:
+        local_setup: false
+
+    env:
+      storageClass: local-path
+
+      # TODO: remove this ugly thing and inject it correctly
+      pgdb_remote_url: postgresql://app:pPL7IoZWQVxI0jgfgsO8W3MSvFA4H6jFFdD3DJDxU4unAJfvrFtKI9xvLe6cjUIA@postgres-cluster-rw.plane:5432/app

@@ -14,7 +14,7 @@ data:
   DEFAULT_PLAYER_PERMISSION_LEVEL: "member" # Options: visitor, member, operator
   LEVEL_NAME: "r.e.a.q.n.t.f.a.e."
   LEVEL_SEED: "416665323"
-  #SERVER_NAME: "my_minecraft_server"
+  SERVER_NAME: "r.e.a.q.n.t.f.a.e."
   SERVER_PORT: "19132"
   #SERVER_PORT_V6: "19133"
   LEVEL_TYPE: "DEFAULT" # Options: FLAT, LEGACY, DEFAULT

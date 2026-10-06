@@ -29,3 +29,4 @@ spec:
     env:
       # TODO: remove this ugly thing and inject it correctly
       pgdb_remote_url: postgresql://app:pPL7IoZWQVxI0jgfgsO8W3MSvFA4H6jFFdD3DJDxU4unAJfvrFtKI9xvLe6cjUIA@postgres-cluster-rw.plane:5432/app
+      secret_key: amoguspotatus007

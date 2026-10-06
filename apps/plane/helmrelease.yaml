@@ -8,7 +8,7 @@ spec:
   chart:
     spec:
       chart: plane-ce
-      version: "3.3.0"
+      version: "1.4.2"
       sourceRef:
         kind: HelmRepository
         name: plane
@@ -16,6 +16,8 @@ spec:
       interval: 10m
 
   values:
+    planeVersion: v1.4.2
+
     license:
       licenseDomain: plane.ygg.dedyn.io
       licenseServer: https://prime.plane.so

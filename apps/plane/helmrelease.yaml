@@ -16,8 +16,6 @@ spec:
       interval: 10m
 
   values:
-    planeVersion: v2.6.3
-
     license:
       licenseDomain: plane.ygg.dedyn.io
       licenseServer: https://prime.plane.so

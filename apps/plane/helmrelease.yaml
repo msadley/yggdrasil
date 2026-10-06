@@ -18,20 +18,22 @@ spec:
   values:
     planeVersion: v1.4.2
 
-    license:
-      licenseDomain: plane.ygg.dedyn.io
-      licenseServer: https://prime.plane.so
-
     ingress:
       enabled: true
       ingressClass: traefik
+      appHost: plane.ygg.dedyn.io
 
     services:
       postgres:
         local_setup: false
 
-    env:
+    redis:
+      storageClass: local-path
+    minio:
+      storageClass: local-path
+    rabbitmq:
       storageClass: local-path
 
+    env:
       # TODO: remove this ugly thing and inject it correctly
       pgdb_remote_url: postgresql://app:pPL7IoZWQVxI0jgfgsO8W3MSvFA4H6jFFdD3DJDxU4unAJfvrFtKI9xvLe6cjUIA@postgres-cluster-rw.plane:5432/app

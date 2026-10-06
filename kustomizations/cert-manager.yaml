@@ -10,4 +10,4 @@ spec:
   targetNamespace: cert-manager
   sourceRef:
     kind: GitRepository
-    name: yggdrasil
+    name: flux-system 

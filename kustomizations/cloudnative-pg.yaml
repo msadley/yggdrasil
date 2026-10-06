@@ -10,4 +10,4 @@ spec:
   targetNamespace: cnpg
   sourceRef:
     kind: GitRepository
-    name: yggdrasil
+    name: flux-system

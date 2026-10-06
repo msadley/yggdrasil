@@ -10,4 +10,4 @@ spec:
   targetNamespace: flux-system
   sourceRef:
     kind: GitRepository
-    name: yggdrasil
+    name: flux-system

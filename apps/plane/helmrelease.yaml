@@ -27,5 +27,5 @@ spec:
       local_setup: false
 
     env:
-      pgdb_remote_url: postgresql://app:HBansl8U1eBDSPdIeeC2qBZaIDGzRltwYSACI1B6Xox2U8AwKV6T6HFfn5bpKUgu@postgres-cluster-rw.plane:5432/app
+      pgdb_remote_url: postgresql://app:t1KMbLK88zeQNCVOHeKTSEBoP7hoXuznVRn7A6FvEMfm7drkJDjmu0T8la4uJGTp@postgres-cluster-rw.plane:5432/app
       secret_key: amoguspotatus007

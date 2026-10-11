@@ -22,6 +22,10 @@ spec:
       enabled: true
       ingressClass: traefik
       appHost: plane.ygg.dedyn.io
+      traefik:
+        entryPoints:
+          - web
+          - websecure
 
     ssl:
       tls_secret_name: plane-tls-secret

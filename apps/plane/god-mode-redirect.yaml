@@ -1,0 +1,32 @@
+apiVersion: traefik.io/v1alpha1
+kind: Middleware
+metadata:
+  name: plane-god-mode-redirect
+  namespace: plane
+spec:
+  redirectRegex:
+    regex: "^(https?://[^/]+)/god-mode$"
+    replacement: "${1}/god-mode/"
+    permanent: true
+
+---
+apiVersion: traefik.io/v1alpha1
+kind: IngressRoute
+metadata:
+  name: plane-god-mode-fix
+  namespace: plane
+spec:
+  entryPoints:
+    - web
+    - websecure
+  routes:
+    - match: Host(`plane.ygg.dedyn.io`) && Path(`/god-mode`)
+      kind: Rule
+      priority: 100
+      middlewares:
+        - name: plane-god-mode-redirect
+      services:
+        - name: plane-admin
+          port: 3000
+  tls:
+    secretName: plane-tls-secret

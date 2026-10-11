@@ -1,0 +1,12 @@
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: plane-tls-certificate
+  namespace: plane
+spec:
+  secretName: plane-tls-secret
+  issuerRef:
+    name: letsencrypt-staging-cluster-issuer
+    kind: ClusterIssuer
+  dnsNames:
+    - plane.ygg.dedyn.io

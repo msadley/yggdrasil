@@ -23,6 +23,9 @@ spec:
       ingressClass: traefik
       appHost: plane.ygg.dedyn.io
 
+    ssl:
+      tls_secret_name: plane-tls-secret
+
     postgres:
       local_setup: false
 

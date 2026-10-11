@@ -6,7 +6,7 @@ metadata:
 spec:
   secretName: plane-tls-secret
   issuerRef:
-    name: letsencrypt-staging-cluster-issuer
+    name: letsencrypt-prod-cluster-issuer
     kind: ClusterIssuer
   dnsNames:
     - plane.ygg.dedyn.io

@@ -46,6 +46,8 @@ spec:
   # never more than 1 since BDS is not horizontally scalable
   replicas: 1
   serviceName: bds
+  updateStrategy:
+    type: OnDelete
   selector:
     matchLabels:
       app: bds
@@ -65,8 +67,9 @@ spec:
             - sh
             - -c
             - |
+              ss -K state time-wait sport = :19132 2>/dev/null || true
               ip route del default via 10.0.0.1 dev enp0s6 metric 100 mtu 1500 2>/dev/null || true
-              ip route replace default via 10.0.0.1 dev enp0s6 metric 50 mtu 1500 || true
+              ip route replace default via 10.0.0.1 dev enp0s6 metric 50 mtu 1400 || true
               iptables -D ufw-user-input -p udp --dport 19140:19150 -j ACCEPT 2>/dev/null || true
               iptables -C ufw-user-input -p udp --dport 19140:19200 -j ACCEPT 2>/dev/null || iptables -I ufw-user-input -p udp --dport 19140:19200 -j ACCEPT
               iptables -C ufw-user-input -p tcp --dport 19132 -j ACCEPT 2>/dev/null || iptables -I ufw-user-input -p tcp --dport 19132 -j ACCEPT

@@ -26,7 +26,7 @@ data:
   ## Changing these will have a security impact
   ONLINE_MODE: "true" # Options: true, false (removes Xbox Live account requirements)
   WHITE_LIST: "false" # If enabled, need to provide a whitelist.json by your own means.
-  TRANSPORT: "nethernet" # Options: raknet (legacy UDP), nethernet (modern WebRTC)
+  TRANSPORT: "nethernet" # Options: raknet (legacy UDP), nethernet (modern WebRTC - required by BDS 1.26+)
   SERVER_UDP_PORTS: "<public_ip>:19140-19150:19140-19150"
   #
   ## Changing these will have a performance impact
@@ -53,6 +53,22 @@ spec:
       labels:
         app: bds
     spec:
+      hostNetwork: true
+      dnsPolicy: ClusterFirstWithHostNet
+      nodeSelector:
+        kubernetes.io/hostname: yggdrasil
+      initContainers:
+        - name: fix-network-and-firewall
+          image: nicolaka/netshoot
+          command:
+            - sh
+            - -c
+            - |
+              ip route change default via 10.0.0.1 dev enp0s6 proto dhcp src 10.0.0.147 metric 100 mtu 1500 || true
+              iptables -C ufw-user-input -p tcp --dport 19132 -j ACCEPT 2>/dev/null || iptables -I ufw-user-input -p tcp --dport 19132 -j ACCEPT
+              iptables -C ufw-user-input -p udp --dport 19140:19150 -j ACCEPT 2>/dev/null || iptables -I ufw-user-input -p udp --dport 19140:19150 -j ACCEPT
+          securityContext:
+            privileged: true
       containers:
         - name: main
           image: itzg/minecraft-bedrock-server
@@ -134,8 +150,7 @@ metadata:
   name: bds
   namespace: minecraft-bedrock
 spec:
-  type: LoadBalancer
-  externalTrafficPolicy: Local
+  clusterIP: None
   selector:
     app: bds
   ports:

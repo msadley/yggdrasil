@@ -27,7 +27,8 @@ data:
   ONLINE_MODE: "true" # Options: true, false (removes Xbox Live account requirements)
   WHITE_LIST: "false" # If enabled, need to provide a whitelist.json by your own means.
   TRANSPORT: "nethernet" # Options: raknet (legacy UDP), nethernet (modern WebRTC - required by BDS 1.26+)
-  SERVER_UDP_PORTS: "<public_ip>:19140-19150:19140-19150"
+  SERVER_UDP_PORTS: "<public_ip>:19140-19200:19140-19200"
+  CONTENT_LOG_CONSOLE_OUTPUT_ENABLED: "true"
   #
   ## Changing these will have a performance impact
   VIEW_DISTANCE: "12"
@@ -64,9 +65,12 @@ spec:
             - sh
             - -c
             - |
-              ip route change default via 10.0.0.1 dev enp0s6 proto dhcp src 10.0.0.147 metric 100 mtu 1500 || true
+              ip route del default via 10.0.0.1 dev enp0s6 metric 100 mtu 1500 2>/dev/null || true
+              ip route replace default via 10.0.0.1 dev enp0s6 metric 50 mtu 1500 || true
+              iptables -D ufw-user-input -p udp --dport 19140:19150 -j ACCEPT 2>/dev/null || true
+              iptables -C ufw-user-input -p udp --dport 19140:19200 -j ACCEPT 2>/dev/null || iptables -I ufw-user-input -p udp --dport 19140:19200 -j ACCEPT
               iptables -C ufw-user-input -p tcp --dport 19132 -j ACCEPT 2>/dev/null || iptables -I ufw-user-input -p tcp --dport 19132 -j ACCEPT
-              iptables -C ufw-user-input -p udp --dport 19140:19150 -j ACCEPT 2>/dev/null || iptables -I ufw-user-input -p udp --dport 19140:19150 -j ACCEPT
+              iptables -t mangle -C POSTROUTING -p tcp --tcp-flags SYN,RST SYN -j TCPMSS --clamp-mss-to-pmtu 2>/dev/null || iptables -t mangle -A POSTROUTING -p tcp --tcp-flags SYN,RST SYN -j TCPMSS --clamp-mss-to-pmtu
           securityContext:
             privileged: true
       containers:
@@ -85,39 +89,6 @@ spec:
               protocol: TCP
             - name: udp-ping
               containerPort: 19132
-              protocol: UDP
-            - name: udp-19140
-              containerPort: 19140
-              protocol: UDP
-            - name: udp-19141
-              containerPort: 19141
-              protocol: UDP
-            - name: udp-19142
-              containerPort: 19142
-              protocol: UDP
-            - name: udp-19143
-              containerPort: 19143
-              protocol: UDP
-            - name: udp-19144
-              containerPort: 19144
-              protocol: UDP
-            - name: udp-19145
-              containerPort: 19145
-              protocol: UDP
-            - name: udp-19146
-              containerPort: 19146
-              protocol: UDP
-            - name: udp-19147
-              containerPort: 19147
-              protocol: UDP
-            - name: udp-19148
-              containerPort: 19148
-              protocol: UDP
-            - name: udp-19149
-              containerPort: 19149
-              protocol: UDP
-            - name: udp-19150
-              containerPort: 19150
               protocol: UDP
           readinessProbe: &probe
             exec:
@@ -161,48 +132,4 @@ spec:
     - name: udp-ping
       port: 19132
       targetPort: 19132
-      protocol: UDP
-    - name: udp-19140
-      port: 19140
-      targetPort: 19140
-      protocol: UDP
-    - name: udp-19141
-      port: 19141
-      targetPort: 19141
-      protocol: UDP
-    - name: udp-19142
-      port: 19142
-      targetPort: 19142
-      protocol: UDP
-    - name: udp-19143
-      port: 19143
-      targetPort: 19143
-      protocol: UDP
-    - name: udp-19144
-      port: 19144
-      targetPort: 19144
-      protocol: UDP
-    - name: udp-19145
-      port: 19145
-      targetPort: 19145
-      protocol: UDP
-    - name: udp-19146
-      port: 19146
-      targetPort: 19146
-      protocol: UDP
-    - name: udp-19147
-      port: 19147
-      targetPort: 19147
-      protocol: UDP
-    - name: udp-19148
-      port: 19148
-      targetPort: 19148
-      protocol: UDP
-    - name: udp-19149
-      port: 19149
-      targetPort: 19149
-      protocol: UDP
-    - name: udp-19150
-      port: 19150
-      targetPort: 19150
       protocol: UDP

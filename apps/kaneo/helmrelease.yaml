@@ -11,6 +11,11 @@ spec:
   interval: 5m
 
   values:
+    ingress:
+      enabled: true
+      hosts:
+        - kaneo.ygg.dedyn.io
     kaneo:
       env:
         authSecret: i-@81nc0#dbrgWz8ReAyg7Wd@q73Id!.
+        clientUrl: kaneo.ygg.dedyn.io

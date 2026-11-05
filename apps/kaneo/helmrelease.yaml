@@ -1,0 +1,11 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: kaneo
+  namespace: kaneo
+spec:
+  chartRef:
+    kind: OCIRepository
+    name: kaneo
+    namespace: kaneo
+  interval: 5m

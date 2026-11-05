@@ -1,0 +1,10 @@
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: OCIRepository
+metadata:
+  name: kaneo
+  namespace: kaneo
+spec:
+  interval: 5m
+  url: oci://ghcr.io/usekaneo/charts/kaneo
+  ref:
+    semver: "^2.49.0"

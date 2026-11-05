@@ -13,8 +13,20 @@ spec:
   values:
     ingress:
       enabled: true
+      annotations:
+        cert-manager.io/cluster-issuer: letsencrypt-prod
       hosts:
-        - kaneo.ygg.dedyn.io
+        - host: kaneo.ygg.dedyn.io
+          paths:
+            - path: /
+              pathType: Prefix
+              service: kaneo
+              port: 5173
+
+    postgresql:
+      auth:
+        password: "your-secure-db-password"
+
     kaneo:
       env:
         authSecret: i-@81nc0#dbrgWz8ReAyg7Wd@q73Id!.

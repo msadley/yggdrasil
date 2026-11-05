@@ -30,4 +30,4 @@ spec:
     kaneo:
       env:
         authSecret: i-@81nc0#dbrgWz8ReAyg7Wd@q73Id!.
-        clientUrl: kaneo.ygg.dedyn.io
+        clientUrl: https://kaneo.ygg.dedyn.io

@@ -9,3 +9,8 @@ spec:
     name: kaneo
     namespace: kaneo
   interval: 5m
+
+  values:
+    kaneo:
+      env:
+        authSecret: i-@81nc0#dbrgWz8ReAyg7Wd@q73Id!.

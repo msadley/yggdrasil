@@ -18,7 +18,7 @@ metadata:
   namespace: flux-system
 spec:
   interval: 10m
-  targetNamespace: flux-system
+  targetNamespace: projeto-es
   sourceRef:
     kind: GitRepository
     name: projeto-es

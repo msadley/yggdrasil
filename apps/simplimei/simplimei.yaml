@@ -1,0 +1,71 @@
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: simplimei
+  namespace: simplimei
+spec:
+  interval: 10m
+  path: ./k8s/base
+  prune: true
+  timeout: 5m
+  targetNamespace: simplimei
+  sourceRef:
+    kind: GitRepository
+    name: simplimei-infra
+  patches:
+    - target:
+        kind: Namespace
+        name: simplimei
+      patch: |
+        $patch: delete
+        apiVersion: v1
+        kind: Namespace
+        metadata:
+          name: simplimei
+    - target:
+        kind: Deployment
+        name: backend
+      patch: |
+        apiVersion: apps/v1
+        kind: Deployment
+        metadata:
+          name: backend
+          namespace: simplimei
+        spec:
+          template:
+            spec:
+              nodeSelector:
+                kubernetes.io/hostname: yggdrasil
+              imagePullSecrets:
+                - name: ghcr-pull
+              containers:
+                - name: backend
+                  imagePullPolicy: Always
+    - target:
+        kind: StatefulSet
+        name: postgres
+      patch: |-
+        - op: add
+          path: /spec/template/spec/nodeSelector
+          value:
+            kubernetes.io/hostname: yggdrasil
+        - op: add
+          path: /spec/volumeClaimTemplates/0/spec/storageClassName
+          value: local-path-retain
+    - target:
+        kind: Ingress
+        name: backend
+      patch: |-
+        - op: add
+          path: /metadata/annotations
+          value:
+            cert-manager.io/cluster-issuer: letsencrypt-prod-cluster-issuer
+        - op: add
+          path: /spec/rules/0/host
+          value: simplimei.ygg.dedyn.io
+        - op: add
+          path: /spec/tls
+          value:
+            - hosts:
+                - simplimei.ygg.dedyn.io
+              secretName: simplimei-tls

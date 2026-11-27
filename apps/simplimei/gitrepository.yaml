@@ -1,0 +1,12 @@
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: GitRepository
+metadata:
+  name: simplimei-infra
+  namespace: simplimei
+spec:
+  interval: 5m
+  url: https://github.com/Projeto-ES-2026-2-G1/infra.git
+  ref:
+    branch: main
+  secretRef:
+    name: projeto-es-flux
